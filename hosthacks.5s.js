@@ -15,7 +15,7 @@ let hostFile = require('fs').readFileSync('/etc/hosts').toString().split('\n');
 let hosts = {};
 hostFile.forEach(function (line) {
     // remove all blank and commented out lines
-    let entry = line.replace(/\s*#.*$/, '');
+    let entry = line.replace(/\s*#.*$/, '').replace(/^\s+/, '');
     if (!entry.length) {
         return;
     }
@@ -46,7 +46,7 @@ let names = Object.keys(hosts);
 if (names.length > 0) {
     console.log('HOST HACKS! | color=red');
     names.forEach(function(host) {
-        console.log(`${host} => ${hosts[host]} | color=black`);
+        console.log(`${host} => ${hosts[host]} | color=gray`);
 
     });
 } else {
